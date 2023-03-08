@@ -1,14 +1,13 @@
 <template>
     <ul class="grid">
         <li v-for="item in combinedData" :key="item.id">
-            <img :src="Image" alt="">
-            <h3>{{ item.title ? item.title : item.name}}</h3>
-            <h4>{{ item.original_title ? item.original_title : item.original_name }}</h4>
-            <p>{{ item.language ? item.language : item.original_language }}</p>
-            <p>{{ item.vote_average}}</p>
+            <img :src="poster(item.poster_path)" alt="">
+            <h3>Titolo: {{ item.title ? item.title : item.name}}</h3>
+            <h4>Titolo Originale: {{ item.original_title ? item.original_title : item.original_name }}</h4>
+            <p>Lingua: {{ item.language ? item.language : item.original_language }}</p>
+            <p>Voto: {{ item.vote_average}}</p>
             
         </li>
-        {{ Language }}
     </ul>
 </template>
 
@@ -28,14 +27,13 @@ export default{
         combinedData() {
             return this.store.movies.concat(this.store.series)
         },
-        Language(){
-            return 
-        },
-        Image(){
-            return this.item.poster_path
-        }
     },
     methods:{
+        poster(image){
+            const url='https://image.tmdb.org/t/p/w342'
+            return image = url + image
+            // console.log(image);
+        }   
 
     }
     

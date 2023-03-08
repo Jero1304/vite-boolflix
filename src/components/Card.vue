@@ -12,9 +12,15 @@
                 :src="flagLang(item.language ? item.language : item.original_language)" 
                 alt="">
             </p>
-
-            <p>Voto: {{ item.vote_average}}</p>
-            
+            <p>
+                Voto: 
+                <i 
+                class="fa-solid fa-star"
+                v-for="i in 5" 
+                :key="i" 
+                :style="{ color: i <= starVote(item.vote_average) ? 'gold' : 'black' }" 
+                ></i>
+            </p>        
         </li>
     </ul>
 </template>
@@ -52,6 +58,12 @@ export default{
                 case 'it':
                     return '../../public/img/it.png';    
             }
+        },
+        starVote(vote){
+            vote = vote/2;
+            vote = Math.ceil(vote)
+            console.log(vote);
+            return vote
         }
 
     }

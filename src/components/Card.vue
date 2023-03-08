@@ -1,13 +1,14 @@
 <template>
-
-    <!-- <h3>Film</h3> -->
     <ul class="grid">
         <li v-for="item in combinedData" :key="item.id">
+            <img :src="Image" alt="">
             <h3>{{ item.title ? item.title : item.name}}</h3>
             <h4>{{ item.original_title ? item.original_title : item.original_name }}</h4>
             <p>{{ item.language ? item.language : item.original_language }}</p>
             <p>{{ item.vote_average}}</p>
+            
         </li>
+        {{ Language }}
     </ul>
 </template>
 
@@ -26,8 +27,17 @@ export default{
     computed:{
         combinedData() {
             return this.store.movies.concat(this.store.series)
+        },
+        Language(){
+            return 
+        },
+        Image(){
+            return this.item.poster_path
         }
     },
+    methods:{
+
+    }
     
 }
 </script>

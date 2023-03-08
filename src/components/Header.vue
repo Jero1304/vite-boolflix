@@ -6,7 +6,12 @@
                     <h1>BOOLFLIX</h1>
                 </div>
                 <div class="search-bar">
-                    <input @keyup.enter="$emit('onSearch')" v-model="store.search" type="text" placeholder="Cerca Film">
+                    <input 
+                    @keyup.enter="$emit('onSearch')" 
+                    v-model="store.search" 
+                    type="text" 
+                    placeholder="Cerca Film"
+                    >
                 </div>
             </div>
         </div>
@@ -22,9 +27,6 @@ export default{
             
         }
     }, 
-    method:{
-
-    }
 }
 
 </script>

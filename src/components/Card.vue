@@ -6,11 +6,14 @@
             <h4>Titolo Originale: {{ item.original_title ? item.original_title : item.original_name }}</h4>
             <p>
                 Lingua: 
-                {{ item.language ? item.language : item.original_language }}
+                <!-- {{ item.language ? item.language : item.original_language }} -->
                 <img 
+                v-if="flagLang(item.language ? item.language : item.original_language)"
                 class="flag" 
                 :src="flagLang(item.language ? item.language : item.original_language)" 
                 alt="">
+
+                <span v-else>{{ item.language ? item.language : item.original_language }}</span>
             </p>
             <p>
                 Voto: 
@@ -62,7 +65,7 @@ export default{
         starVote(vote){
             vote = vote/2;
             vote = Math.ceil(vote)
-            console.log(vote);
+            // console.log(vote);
             return vote
         }
 

@@ -87,14 +87,20 @@ export default{
                 }
             })
         },
+        imageNotFound(){
+            return 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png'
+        }
     },
 
     methods:{
         poster(image){
             const url='https://image.tmdb.org/t/p/w342'
             image = url + image
+            if(image === 'https://image.tmdb.org/t/p/w342null'){
+                console.log('image not found');
+                return this.imageNotFound;
+            }
             return this.store.img = image
-            // console.log('image',image);
         },
         
         flagLang(lang){
@@ -143,7 +149,7 @@ export default{
             }
             .overlay{
                 display: none;
-                padding: 15px;
+                padding: 15px 15px 5px 15px;
             }
             &:hover{
                 .overlay {

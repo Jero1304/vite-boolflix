@@ -3,7 +3,7 @@
         <li v-for="item in items" :key="item.id">
 
             <img :src="poster(item.poster)" alt="">
-            
+
             <div v-if="item.title === item.originalTitle">
                 <h3>{{ item.title }}</h3>
             </div>
@@ -11,6 +11,7 @@
                 <h3>{{ item.title }}</h3>
                 <h4>{{ item.originalTitle }}</h4>
             </div>
+            <p>Trama: {{ item.overview }}</p>
             
             <!-- lingua -->
             <p>
@@ -66,6 +67,7 @@ export default{
                     vote: item.vote_average,
                     isMovie: isMovie,
                     poster: item.poster_path,
+                    overview: item.overview,
                 }
             })
         },

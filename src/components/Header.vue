@@ -33,6 +33,8 @@ export default{
 
 <style lang="scss" scoped>
 @use '../style/general.scss';
+.bg-header{
+    background-color: black;
     .header{
         display: flex;
         flex-direction: row;
@@ -42,6 +44,14 @@ export default{
         .logo{
             color: red;
         }
+        .search-bar{
+
+            input{
+                padding: 7px;
+                border-radius: 20px;
+            }
+        }
     }
+}
 
 </style>

@@ -1,28 +1,35 @@
 <template>
     <ul class="grid">
-        <li v-for="item in combinedData" :key="item.id">
-            <img :src="poster(item.poster_path)" alt="">
-            <h3>Titolo: {{ item.title ? item.title : item.name}}</h3>
-            <h4>Titolo Originale: {{ item.original_title ? item.original_title : item.original_name }}</h4>
+        <li v-for="item in items" :key="item.id">
+
+            <img :src="poster(item.poster)" alt="">
+            
+            <div v-if="item.title === item.originalTitle">
+                <h3>{{ item.title }}</h3>
+            </div>
+            <div v-else>
+                <h3>{{ item.title }}</h3>
+                <h4>{{ item.originalTitle }}</h4>
+            </div>
+            
+            <!-- lingua -->
             <p>
                 Lingua: 
-                <!-- {{ item.language ? item.language : item.original_language }} -->
                 <img 
-                v-if="flagLang(item.language ? item.language : item.original_language)"
+                v-if="flagLang(item.language)"
                 class="flag" 
-                :src="flagLang(item.language ? item.language : item.original_language)" 
+                :src="flagLang(item.language)" 
                 alt="">
 
-                <span v-else>{{ item.language ? item.language : item.original_language }}</span>
+                <span v-else>{{ item.language }}</span>
             </p>
+            <!-- voto -->
             <p>
                 Voto: 
-                <i 
-                class="fa-solid fa-star"
+                <font-awesome-icon icon="fa-solid fa-star" 
                 v-for="i in 5" 
                 :key="i" 
-                :style="{ color: i <= starVote(item.vote_average) ? 'gold' : 'black' }" 
-                ></i>
+                :style="{ color: i <= starVote(item.vote) ? 'gold' : 'black' }" />
             </p>        
         </li>
     </ul>
@@ -41,9 +48,28 @@ export default{
         required: true,
     },
     computed:{
-        combinedData() {
-            return this.store.movies.concat(this.store.series)
+        // items() {
+        //     return this.store.movies.concat(this.store.series)
+        // },
+
+        items() {
+            const { series, movies} = this.store
+            const items = this.store.movies.concat(this.store.series)
+
+            return items.map((item) =>{
+                const isMovie = item.title !== undefined
+
+                return{
+                    title: isMovie ? item.title : item.name,
+                    originalTitle: isMovie ? item.original_title : item.original_name,
+                    language: item.original_language,
+                    vote: item.vote_average,
+                    isMovie: isMovie,
+                    poster: item.poster_path,
+                }
+            })
         },
+
     },
     methods:{
         poster(image){

@@ -25,6 +25,7 @@ export default{
             console.log('fetch');
             this.fetchMovies()
             this.fetchSeries()
+            store.search = ''
         },
 
     fetchMovies(){
@@ -65,11 +66,6 @@ export default{
         })
     },
   },
-  // created(){
-  //       this.fetchMovies()
-  //       this.fetchSeries()
-
-  //   }
 }
 </script>
 

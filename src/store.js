@@ -8,6 +8,7 @@ const store = reactive({
         API_KEY:'c81095b9073967ba29258efead0e48db',
         URL:'https://api.themoviedb.org/3',
     },
+    img:'',
 })
 
 export default store
